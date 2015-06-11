@@ -14,13 +14,15 @@ class CheckBox(Element):
         if self.is_selected():
             self._element.click()
 
-    def get_label(self):
+    @property
+    def label(self):
         try:
             return self._element.find_element_by_xpath(".//following-sibling::label")
         except NoSuchElementException:
             return None
 
-    def get_label_text(self):
+    @property
+    def label_text(self):
         label = self.get_label()
         if label is not None:
             return label.text

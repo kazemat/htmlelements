@@ -30,7 +30,7 @@ class Table(Element):
             return self._element.find_elements_by_xpath(".//tr")
 
     def get_columns(self, tag):
-        rows = self.get_rows()
+        rows = self.get_rows(tag)
         return list(map(lambda x: x.find_elements_by_xpath(".//td"), rows))
 
     def get_columns_text(self, tag):

@@ -1,4 +1,5 @@
-from htmlelements.element import Element
+from htmlelements.elements import Element
+
 
 
 

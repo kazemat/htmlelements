@@ -8,10 +8,6 @@ class Element(object):
         self.__type = type
         self.locator = None
 
-    @classmethod
-    def init(cls, elem):
-        return cls(elem)
-
     def __str__(self):
         return "<{0}({1})>".format(self.__type, self._element)
 
