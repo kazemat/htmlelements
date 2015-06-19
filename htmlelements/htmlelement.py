@@ -6,24 +6,6 @@ class HTMLElement(object):
     def __init__(self, element):
         self._element = element
 
-    def find(self, **kwargs):
-        def decor(fnc):
-            def searcher(self):
-                if kwargs.get('css'):
-                    return fnc(self._element.find_element(by=By.CSS_SELECTOR, value=kwargs.get('css')))
-                elif kwargs.get('xpath'):
-                    return fnc(self._element.find_element(by=By.XPATH, value=kwargs.get('xpath')))
-                elif kwargs.get('class'):
-                    return fnc(self._element.find_element(by=By.CLASS_NAME, value=kwargs.get('class')))
-                elif kwargs.get('id'):
-                    return fnc(self._element.find_element(by=By.ID, value=kwargs.get('id')))
-                elif kwargs.get('name'):
-                    return fnc(self._element.find_element(by=By.NAME, value=kwargs.get('name')))
-                else:
-                    raise ValueError
-            return searcher
-        return decor
-
     def is_selected(self):
         return self._element.is_selected()
 

@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='htmlelements',
     version='0.1',
-    packages=['htmlelements', 'htmlelements.elements'],
+    packages=['htmlelements', 'htmlelements.elements', 'htmlelements.decorators'],
     url='https://github.com/kazemat/htmlelements.git',
     license='GNU GPL',
     author='plipchak',
