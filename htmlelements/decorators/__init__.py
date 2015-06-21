@@ -1,1 +1,2 @@
-__author__ = 'plipchak'
+from .finder import find
+from .named import name

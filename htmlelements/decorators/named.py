@@ -1,10 +1,9 @@
 from functools import wraps
 
-
+# TODO: fix this decorator
 def name(value):
-    def decorator(fnc):
-        @wraps(fnc)
-        def named(self):
-            self.name = value
-        return named
-    return decorator
+    def named(self):
+        setattr(self, 'name', value)
+        # self.name = value
+        return self
+    return named
