@@ -2,8 +2,14 @@ from functools import wraps
 
 # TODO: fix this decorator
 def name(value):
-    def named(self):
-        setattr(self, 'name', value)
-        # self.name = value
-        return self
+    class named(object):
+
+        def __init__(self, fnc):
+            self.fnc = fnc
+
+        def __get__(self, instance, owner):
+            print(dir(self.fnc))
+            print(self.fnc.fnc)
+            self.fnc.fnc.name = value
+            return self.fnc
     return named

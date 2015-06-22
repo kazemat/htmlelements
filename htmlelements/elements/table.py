@@ -6,16 +6,11 @@ class Table(Element):
     def __init__(self, element):
         super(Table, self).__init__(element, type='Table')
 
-    def get_header(self, tag):
-        if tag == 'th':
-            return self._element.find_elements_by_xpath(".//{0}".format(tag))
-        elif tag == 'thead':
-            return self._element.find_elements_by_xpath(".//{0}//td".format(tag))
-        else:
-            raise Exception("Incorrect table header tag!")
+    def get_header(self):
+        return self._element.find_elements_by_xpath(".//th")
 
-    def get_header_elements_as_strings(self, tag='thead'):
-        header = self.get_header(tag=tag)
+    def get_header_elements_as_strings(self):
+        header = self.get_header()
         return list(
             map(
                 lambda x: x.text,
@@ -23,7 +18,7 @@ class Table(Element):
             )
         )
 
-    def get_rows(self, tag):
+    def get_rows(self, tag='tbody'):
         if tag == 'tbody':
             return self._element.find_elements_by_xpath(".//tbody//tr")
         else:
@@ -48,5 +43,13 @@ class Table(Element):
             raise Exception()
         return cols[index]
 
-
-
+    def table_to_dict(self):
+        one = self.get_header_elements_as_strings()
+        rows = self.get_rows()
+        result = list()
+        for row in rows:
+            q = dict()
+            for i in range(len(one)):
+                q[one[i]] = row[i]
+            result.append(q)
+        return result

@@ -25,7 +25,8 @@ def find(**kwargs):
 
         def __get__(self, obj, klass):
             if kwargs.get('css'):
-                return self.fnc(obj)(element=obj._element.find_element(by=By.CSS_SELECTOR, value=kwargs.get('css')))
+                elem = self.fnc(obj)(element=obj._element.find_element(by=By.CSS_SELECTOR, value=kwargs.get('css')))
+                return elem
             elif kwargs.get('xpath'):
                 return self.fnc(obj)(element=obj._element.find_element(by=By.XPATH, value=kwargs.get('xpath')))
             elif kwargs.get('class_name'):
@@ -36,10 +37,4 @@ def find(**kwargs):
                 return self.fnc(obj)(element=obj._element.find_element(by=By.NAME, value=kwargs.get('name')))
             else:
                 raise ValueError
-
-        def __setattr__(self, key, value):
-            if key.lower() == 'name':
-                self.fnc.name = value
-            else:
-                setattr(self, key, value)
     return new_find
