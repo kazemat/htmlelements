@@ -4,7 +4,7 @@ from htmlelements.elements.element import Element
 class Table(Element):
 
     def __init__(self, element):
-        super(Table, self).__init__(element, type='Table')
+        super(Table, self).__init__(element, type='Таблица')
 
     def get_header(self):
         return self._element.find_elements_by_xpath(".//th")

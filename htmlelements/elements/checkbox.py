@@ -4,7 +4,7 @@ from htmlelements.elements.element import Element, NoSuchElementException
 class CheckBox(Element):
 
     def __init__(self, element):
-        super(CheckBox, self).__init__(element, type='CheckBox')
+        super(CheckBox, self).__init__(element, type='Чекбокс')
 
     def select(self):
         if not self.is_selected():

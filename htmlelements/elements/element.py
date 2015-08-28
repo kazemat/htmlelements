@@ -3,7 +3,7 @@ from selenium.webdriver.remote.webelement import WebElement
 
 
 class Element(object):
-    def __init__(self, element, type='Element'):
+    def __init__(self, element, type='Элемент'):
         """
 
         :param element - webelement:

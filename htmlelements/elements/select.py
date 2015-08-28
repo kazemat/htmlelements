@@ -5,7 +5,7 @@ from selenium.webdriver.support import select
 class Select(Element):
 
     def __init__(self, element):
-        super(Select, self).__init__(element, type='Select')
+        super(Select, self).__init__(element, type='Селект')
 
     def get_select(self):
         return select.Select(self._element)

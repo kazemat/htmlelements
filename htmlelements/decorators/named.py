@@ -10,6 +10,6 @@ def name(value):
         def __get__(self, instance, owner):
             print(dir(self.fnc))
             print(self.fnc.fnc)
-            self.fnc.fnc.name = value
+            setattr(self.fnc, 'name', value)
             return self.fnc
     return named

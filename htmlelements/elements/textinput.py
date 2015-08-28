@@ -4,7 +4,7 @@ from htmlelements.elements.element import Element
 class TextInput(Element):
 
     def __init__(self, element):
-        super(TextInput, self).__init__(element, type='TextInput')
+        super(TextInput, self).__init__(element, type='Поле ввода')
 
     def clear(self):
         self._element.clear()

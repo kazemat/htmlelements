@@ -4,7 +4,7 @@ from htmlelements.elements.element import Element
 class Link(Element):
 
     def __init__(self, element):
-        super(Link, self).__init__(element, type='Link')
+        super(Link, self).__init__(element, type='Ссылка')
 
     def get_text(self):
         return self.text

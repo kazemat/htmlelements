@@ -4,7 +4,7 @@ from htmlelements.elements.element import Element, NoSuchElementException
 class Radio(Element):
 
     def __init__(self, element):
-        super(Radio, self).__init__(element, type='Radio')
+        super(Radio, self).__init__(element, type='Радио-кнопка')
 
     def get_buttons(self):
         name = self.get_attribute("name")
