@@ -5,3 +5,6 @@ class Widget(Element):
 
     def __init__(self, element):
          super(Widget, self).__init__(element, type='Виджет')
+
+    def click(self):
+        self._element.click()

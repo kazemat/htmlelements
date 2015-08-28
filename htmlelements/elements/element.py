@@ -9,6 +9,7 @@ class Element(object):
         :param element - webelement:
         :param type - tupe of webelement:
         """
+        assert element is WebElement
         self._element = element
         self.__type = type
         self.name = None
