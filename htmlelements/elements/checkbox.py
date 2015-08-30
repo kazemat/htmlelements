@@ -23,8 +23,7 @@ class CheckBox(Element):
 
     @property
     def label_text(self):
-        label = self.label
-        if label is not None:
-            return label.text
+        if self.label is not None:
+            return self.label.text
         else:
             return None

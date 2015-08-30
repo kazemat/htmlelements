@@ -1,7 +1,6 @@
 import pytest
 from selenium.webdriver import Firefox
-from htmlelements import HTMLElement, TextInput, Button, name
-from htmlelements.decorators.finder import find
+from htmlelements import HTMLElement, TextInput, Button, name, find
 
 # @name('azaza')
 class SearchForm(HTMLElement):
@@ -9,11 +8,11 @@ class SearchForm(HTMLElement):
     def __init__(self, driver):
         super(SearchForm, self).__init__(driver)
 
-    # @find(css='#text')
-    # def input(self):
-    #     return TextInput
+    @name('test')
+    @find(css='#text')
+    def input(self):
+        return TextInput
 
-    # @name('test')
     @find(css='.suggest2-form__button')
     def btnSearch(self):
         return Button
@@ -32,7 +31,7 @@ def control(request):
 def test_one(control):
     driver = control
     frm = SearchForm(driver.find_element_by_css_selector('.suggest2-form__node'))
-    q = frm.btnSearch
+    print(frm.input)
     # frm.input.send_keys('test', clear=True)
     # frm.submit()
     # assert 'Яндекс: нашлось' in driver.title
