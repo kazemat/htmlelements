@@ -30,7 +30,7 @@ def control(request):
 def test_one(control):
     driver = control
     frm = SearchForm(driver.find_element_by_css_selector('.suggest2-form__node'))
-    print(frm.input)
+    frm.btnSearch.click()
     # frm.input.send_keys('test', clear=True)
     # frm.submit()
     # assert 'Яндекс: нашлось' in driver.title

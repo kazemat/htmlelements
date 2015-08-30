@@ -1,10 +1,11 @@
-from selenium.webdriver.common.by import By
+from .log import class_logger
 
 
 class Page(object):
 
-    def __init__(self, element, name=None):
+    def __init__(self, element, name=None, logger=None):
         self._element = element
+        self.logger = logger or class_logger(self)
 
     def is_displayed(self):
         return self._element.is_displayed()

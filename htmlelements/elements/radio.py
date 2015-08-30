@@ -3,19 +3,19 @@ from htmlelements.elements.element import Element, NoSuchElementException
 
 class Radio(Element):
 
-    def __init__(self, element, name=None):
-        super(Radio, self).__init__(element, type='Радио-кнопка', name=name)
+    def __init__(self, element, name=None, logger=None):
+        super(Radio, self).__init__(element, type='Радио-кнопка', name=name, logger=logger)
 
     def get_buttons(self):
         name = self.get_attribute("name")
         if name is not None:
-            xpath = ".//self::* | following::input[@type = 'radio' and @name = '%s'] | " \
-                    "preceding::input[@type = 'radio' and @name = '%s']".format(name)
+            xpath = ".//self::* | following::input[@type = 'radio' and @name = '{0}'] | " \
+                    "preceding::input[@type = 'radio' and @name = '{0}']".format(name)
         else:
             xpath = ".//self::* | following::input[@type = 'radio'] | preceding::input[@type = 'radio']"
         elems = list()
         for item in self._element.find_elements_by_xpath(xpath):
-            elems.append(Radio(item))
+            elems.append(Radio(item, name=item.text))
         return elems
 
 

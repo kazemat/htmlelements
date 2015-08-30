@@ -26,6 +26,7 @@ def find(**kwargs):
 
         def __get__(self, obj, klass):
             name = kwargs.get('element_name') if 'element_name' in kwargs else None
+            logger = getattr(obj, 'logger', None)
             if kwargs.get('css'):
                 by = By.CSS_SELECTOR
                 selector = kwargs.get('css')
@@ -47,5 +48,5 @@ def find(**kwargs):
                 searcher = obj.find_element
             else:
                 searcher = obj._element.find_element
-            return self.fnc(obj)(element=searcher(by=by, value=selector), name=name)
+            return self.fnc(obj)(element=searcher(by=by, value=selector), name=name, logger=logger)
     return new_find
