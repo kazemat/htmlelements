@@ -1,13 +1,10 @@
 from selenium.webdriver.common.by import By
 
 
-class HTMLElement(object):
+class Page(object):
 
-    def __init__(self, element):
+    def __init__(self, element, name=None):
         self._element = element
-
-    def is_selected(self):
-        return self._element.is_selected()
 
     def is_displayed(self):
         return self._element.is_displayed()
@@ -18,18 +15,9 @@ class HTMLElement(object):
     def get_attribute(self, attr):
         return self._element.get_attribute(attr)
 
-    def clear(self):
-        self._element.clear()
-
-    def send_keys(self, *args):
-        self._element.send_keys(*args)
-
     @property
     def text(self):
         return self._element.text
 
-    def click(self):
-        self._element.click()
-
-    def submit(self):
-        self._element.submit()
+    def find_element(self, by, value):
+        return self._element.find_element(by, value)

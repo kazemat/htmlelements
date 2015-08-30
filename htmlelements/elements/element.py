@@ -3,19 +3,20 @@ from selenium.webdriver.remote.webelement import WebElement
 
 
 class Element(object):
-    def __init__(self, element, type='Элемент'):
+    def __init__(self, element, type='Элемент', name=None):
         """
 
         :param element - webelement:
-        :param type - tupe of webelement:
+        :param type - type of webelement:
+        :param name - name of webelement:
         """
         assert isinstance(element, WebElement)
         self._element = element
         self.__type = type
-        self.name = None
+        self._name = name
 
     def __str__(self):
-        return "<{0}({1})>".format(self.__type, self._element)
+        return '{0} "{1}"'.format(self.__type, self._name)
 
     __repr__ = __str__
 

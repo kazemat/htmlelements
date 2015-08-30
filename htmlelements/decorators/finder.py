@@ -10,6 +10,7 @@ def find(**kwargs):
         - class_name - Name of class webelement for the selector
         - id - ID of webelement
         - name - Name of the webelement for the selector
+        - element_name - Name of the webelement for the logging
     :return: :raise ValueError:
     """
 
@@ -24,17 +25,27 @@ def find(**kwargs):
             self.fnc = fnc
 
         def __get__(self, obj, klass):
+            name = kwargs.get('element_name') if 'element_name' in kwargs else None
             if kwargs.get('css'):
-                elem = self.fnc(obj)(element=obj._element.find_element(by=By.CSS_SELECTOR, value=kwargs.get('css')))
-                return elem
+                by = By.CSS_SELECTOR
+                selector = kwargs.get('css')
             elif kwargs.get('xpath'):
-                return self.fnc(obj)(element=obj._element.find_element(by=By.XPATH, value=kwargs.get('xpath')))
+                by = By.XPATH
+                selector = kwargs.get('xpath')
             elif kwargs.get('class_name'):
-                return self.fnc(obj)(element=obj._element.find_element(by=By.CLASS_NAME, value=kwargs.get('class_name')))
+                by = By.CLASS_NAME
+                selector = kwargs.get('class_name')
             elif kwargs.get('id'):
-                return self.fnc(obj)(element=obj._element.find_element(by=By.ID, value=kwargs.get('id')))
+                by = By.ID
+                selector = kwargs.get('id')
             elif kwargs.get('name'):
-                return self.fnc(obj)(element=obj._element.find_element(by=By.NAME, value=kwargs.get('name')))
+                by = By.NAME
+                selector = kwargs.get('name')
             else:
                 raise ValueError
+            if hasattr(obj, 'find_element'):
+                searcher = obj.find_element
+            else:
+                searcher = obj._element.find_element
+            return self.fnc(obj)(element=searcher(by=by, value=selector), name=name)
     return new_find

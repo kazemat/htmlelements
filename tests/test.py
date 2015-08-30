@@ -1,19 +1,18 @@
 import pytest
 from selenium.webdriver import Firefox
-from htmlelements import HTMLElement, TextInput, Button, name, find
+from htmlelements import Page, TextInput, Button, find
 
 # @name('azaza')
-class SearchForm(HTMLElement):
+class SearchForm(Page):
 
     def __init__(self, driver):
         super(SearchForm, self).__init__(driver)
 
-    @name('test')
-    @find(css='#text')
+    @find(css='#text', element_name='строка поиска')
     def input(self):
         return TextInput
 
-    @find(css='.suggest2-form__button')
+    @find(css='.suggest2-form__button', element_name='найти')
     def btnSearch(self):
         return Button
 

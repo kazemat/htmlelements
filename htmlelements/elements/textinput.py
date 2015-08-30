@@ -3,8 +3,8 @@ from htmlelements.elements.element import Element
 
 class TextInput(Element):
 
-    def __init__(self, element):
-        super(TextInput, self).__init__(element, type='Поле ввода')
+    def __init__(self, element, name=None):
+        super(TextInput, self).__init__(element, type='Поле ввода', name=name)
 
     def clear(self):
         self._element.clear()
