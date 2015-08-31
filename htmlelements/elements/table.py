@@ -53,3 +53,12 @@ class Table(Element):
                 q[one[i]] = row[i]
             result.append(q)
         return result
+
+    def is_selected(self):
+         return super(Table, self).is_selected()
+
+    def is_displayed(self):
+        return super(Table, self).is_displayed()
+
+    def is_enabled(self):
+        return super(Table, self).is_enabled()

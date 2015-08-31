@@ -32,3 +32,12 @@ class CheckBox(Element):
             return result
         else:
             return None
+
+    def is_selected(self):
+         return super(CheckBox, self).is_selected()
+
+    def is_displayed(self):
+        return super(CheckBox, self).is_displayed()
+
+    def is_enabled(self):
+        return super(CheckBox, self).is_enabled()

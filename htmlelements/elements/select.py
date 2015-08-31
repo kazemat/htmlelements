@@ -48,3 +48,12 @@ class Select(Element):
 
     def deselect_by_value(self, value):
         self.get_select().deselect_by_value(value=value)
+
+    def is_selected(self):
+         return super(Select, self).is_selected()
+
+    def is_displayed(self):
+        return super(Select, self).is_displayed()
+
+    def is_enabled(self):
+        return super(Select, self).is_enabled()

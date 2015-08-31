@@ -16,3 +16,12 @@ class Link(Element):
     def click(self):
         self.logger.info(CLICK.format(self))
         self._element.click()
+
+    def is_selected(self):
+         return super(Link, self).is_selected()
+
+    def is_displayed(self):
+        return super(Link, self).is_displayed()
+
+    def is_enabled(self):
+        return super(Link, self).is_enabled()
