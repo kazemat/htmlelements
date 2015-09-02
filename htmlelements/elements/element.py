@@ -11,7 +11,7 @@ class Element(object):
         :param type - type of webelement:
         :param name - name of webelement:
         """
-        assert isinstance(element, WebElement)
+        # assert isinstance(element, WebElement)
         self._element = element
         self.__type = type
         self._name = name
