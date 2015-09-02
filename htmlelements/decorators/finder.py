@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+import inspect
 
 
 def find(**kwargs):
@@ -48,5 +49,9 @@ def find(**kwargs):
                 searcher = obj.find_element
             else:
                 searcher = obj._element.find_element
-            return self.fnc(obj)(element=searcher(by=by, value=selector), name=name, logger=logger)
+            if inspect.isclass(self.fnc):
+                q = searcher(by=by, value=selector)
+                return self.fnc(element=searcher(by=by, value=selector), name=name, logger=logger)
+            elif inspect.isfunction(self.fnc):
+                return self.fnc(obj)(element=searcher(by=by, value=selector), name=name, logger=logger)
     return new_find
