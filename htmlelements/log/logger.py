@@ -15,5 +15,6 @@ def class_logger(cls):
     if not getattr(cls, 'logger', None):
         cls.logger = logger
         logger.setLevel(logging.INFO)
-        _add_default_handler(cls.logger)
+        if not cls.logger.handlers:
+            _add_default_handler(cls.logger)
     return cls.logger
