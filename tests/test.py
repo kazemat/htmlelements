@@ -1,37 +1,34 @@
 import pytest
-from selenium.webdriver import Firefox
-from htmlelements import Page, TextInput, Button, find
-
-# @name('azaza')
-class SearchForm(Page):
-
-    def __init__(self, driver):
-        super(SearchForm, self).__init__(driver)
-
-    @find(css='#text', element_name='строка поиска')
-    def input(self):
-        return TextInput
-
-    @find(css='.suggest2-form__button', element_name='найти')
-    def btnSearch(self):
-        return Button
+from selenium.common.exceptions import ElementNotSelectableException
 
 
-@pytest.fixture
-def control(request):
-    driver = Firefox()
-    driver.get('http://www.yandex.ru/')
-    def fin():
-        driver.quit()
-    request.addfinalizer(fin)
-    return driver
+@pytest.mark.usefixtures("control")
+class TestButton():
+
+    def test_click(self):
+        self.page.btn.click()
+
+    def test_button_text(self):
+        assert self.page.btn.text == 'test button'
+
+    def test_button_displayed(self):
+        assert self.page.btn.is_displayed() is True
+
+    def test_button_not_displayed(self):
+        assert self.page.hidden.is_displayed() is False
+        
+    def test_disabled_button(self):
+        assert self.page.btn_disabled.is_enabled() is False
+
+    def test_enabled_button(self):
+        assert self.page.btn.is_enabled() is True
+
+    def test_unabled_click(self):
+        try:
+            self.page.btn_disabled.click()
+        except ElementNotSelectableException:
+            pass
+        else:
+            raise Exception('Disabled element to be clicked!')
 
 
-def test_one(control):
-    driver = control
-    frm = SearchForm(driver.find_element_by_css_selector('.suggest2-form__node'))
-    frm.btnSearch.click()
-    # frm.input.send_keys('test', clear=True)
-    # frm.submit()
-    # assert 'Яндекс: нашлось' in driver.title
-    assert 1
