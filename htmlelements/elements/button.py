@@ -10,3 +10,12 @@ class Button(Element):
     def click(self):
         self.logger.info(CLICK.format(self))
         self._element.click()
+
+    def is_selected(self):
+         return super(Button, self).is_selected()
+
+    def is_displayed(self):
+        return super(Button, self).is_displayed()
+
+    def is_enabled(self):
+        return super(Button, self).is_enabled()

@@ -42,3 +42,12 @@ class Radio(Element):
             raise NoSuchElementException("Cannot locate radio button with index: {0}".format(index))
         else:
             btns[index].click()
+
+    def is_selected(self):
+         return super(Radio, self).is_selected()
+
+    def is_displayed(self):
+        return super(Radio, self).is_displayed()
+
+    def is_enabled(self):
+        return super(Radio, self).is_enabled()

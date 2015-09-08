@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+import inspect
 
 
 def find(**kwargs):
@@ -25,7 +26,7 @@ def find(**kwargs):
             self.fnc = fnc
 
         def __get__(self, obj, klass):
-            name = kwargs.get('element_name') if 'element_name' in kwargs else None
+            name = kwargs.get('element_name', None)
             logger = getattr(obj, 'logger', None)
             if kwargs.get('css'):
                 by = By.CSS_SELECTOR
@@ -48,5 +49,8 @@ def find(**kwargs):
                 searcher = obj.find_element
             else:
                 searcher = obj._element.find_element
-            return self.fnc(obj)(element=searcher(by=by, value=selector), name=name, logger=logger)
+            if inspect.isclass(self.fnc):
+                return self.fnc(element=searcher(by=by, value=selector), name=name, logger=logger)
+            elif inspect.isfunction(self.fnc):
+                return self.fnc(obj)(element=searcher(by=by, value=selector), name=name, logger=logger)
     return new_find

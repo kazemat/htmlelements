@@ -22,3 +22,12 @@ class TextInput(Element):
     @property
     def text(self):
         return self._element.text
+
+    def is_selected(self):
+         return super(TextInput, self).is_selected()
+
+    def is_displayed(self):
+        return super(TextInput, self).is_displayed()
+
+    def is_enabled(self):
+        return super(TextInput, self).is_enabled()
